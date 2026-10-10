@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drywall Calculator - Sheets, Screws & Joint Compound</title>
+    <meta name="description" content="Free drywall calculator. Get the number of drywall sheets, screws and joint compound bags for any room.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/drywall-calculator.html">
+    <meta property="og:title" content="Drywall Calculator - Sheets, Screws & Mud">
+    <meta property="og:description" content="Estimate drywall sheets, screws and joint compound for any room.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much drywall do I need for a 10x10 room?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 10x10 room with 8-foot ceilings has about 480 sq ft of drywall (walls + ceiling), so you need about 10 sheets of 4x12 drywall."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many screws do I need for drywall?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use about 1 drywall screw per square foot of board. A standard 4x12 sheet uses about 48 screws."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Drywall Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Drywall Calculator</h1>
+            <p>Find out how many sheets of drywall, screws and joint compound you need for walls and ceilings.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Room size</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="10">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="10">
+            <label for="height">Ceiling height (ft)</label>
+            <input type="number" id="height" min="1" value="8">
+            <button class="calc-btn" onclick="calcularDrywall()">Calculate drywall</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> wall area = perimeter × height, plus the ceiling. Divide by sheet coverage (48 sq ft for 4×12). 1 screw per sq ft, 4.5 lb of compound per 100 sq ft.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How much drywall do I need?</h2>
+            <p>Calculate total surface: walls (perimeter × height) + ceiling (length × width). A 10×10 room with 8' ceilings has about 480 sq ft — 10 sheets of 4×12 drywall. Buy screws at ~1 per square foot and compound at ~4.5 lb per 100 sq ft.</p>
+            <p><strong>Tip:</strong> use 4×12 sheets vertically to cut fewer seams on 8-foot walls.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How much drywall do I need for a 10×10 room?</h3>
+            <p>About 480 sq ft → 10 sheets of 4×12.</p>
+            <h3>How many screws do I need?</h3>
+            <p>About 1 per sq ft of board — 48 screws per 4×12 sheet.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularDrywall() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const h = parseFloat(document.getElementById('height').value) || 8;
+        const perimetro = 2 * (l + w);
+        const areaPared = perimetro * h;
+        const areaTecho = l * w;
+        const total = areaPared + areaTecho;
+        const tablones4x12 = Math.ceil(total / 48);
+        const tablones4x8 = Math.ceil(total / 32);
+        const tornillos = Math.ceil(total);
+        const compuesto = Math.ceil(total / 100 * 4.5 / 18); /* 18 lb buckets */
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Surface area: <strong>' + Math.round(total) + ' sq ft</strong>.<br>' +
+            'Sheets 4×12: <strong>' + tablones4x12 + '</strong> · Sheets 4×8: <strong>' + tablones4x8 + '</strong>.<br>' +
+            'Screws: <strong>' + tornillos + '</strong> (~1/sq ft).<br>' +
+            'Joint compound: <strong>' + (compuesto || 1) + '</strong> bucket(s) of 18 lb.';
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flooring Calculator - How Much Laminate, Hardwood or Vinyl Do I Need?</title>
+    <meta name="description" content="Free flooring calculator. Get exact square feet and boxes of laminate, hardwood or vinyl flooring for any room, with waste allowance.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/flooring-calculator.html">
+    <meta property="og:title" content="Flooring Calculator - Laminate, Hardwood & Vinyl">
+    <meta property="og:description" content="Estimate square feet and boxes of flooring for any room.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much flooring do I need for a 12x12 room?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 12x12 room is 144 sq ft. With 10% waste you need about 158 sq ft of flooring, which is roughly 8 boxes of laminate (boxes cover about 20 sq ft)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much waste should I add when buying flooring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add 5-10% for straight installations and 10-15% for diagonal or herringbone patterns, which create more cuts and waste."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Flooring Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Flooring Calculator</h1>
+            <p>Find out how much laminate, hardwood or vinyl flooring you need in square feet and boxes, including the correct waste allowance for your layout.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Room size</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="12">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="12">
+            <label for="waste">Waste allowance</label>
+            <select id="waste">
+                <option value="1.05">5% (straight layout)</option>
+                <option value="1.10" selected>10% (standard)</option>
+                <option value="1.15">15% (diagonal / herringbone)</option>
+            </select>
+            <button class="calc-btn" onclick="calcularPiso()">Calculate flooring</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> area = length × width. Multiply by your waste factor. A box of laminate typically covers 20 sq ft, so we divide and round up to whole boxes.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How much flooring do I need?</h2>
+            <p>Measure the room in feet, multiply length by width for the area, and add waste. Straight installations need 5–10%, while diagonal or herringbone patterns need 10–15% because cutting angles creates more offcuts. Most laminate boxes cover about 20 sq ft.</p>
+            <p><strong>Quick rule of thumb:</strong> a 12×12 room needs ~158 sq ft with 10% waste — around 8 boxes of laminate.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How much flooring do I need for a 12×12 room?</h3>
+            <p>144 sq ft, plus ~14 sq ft of waste = about 158 sq ft, or 8 boxes of laminate.</p>
+            <h3>Do underlayment and padding add to the area?</h3>
+            <p>Buy the same square footage of underlayment as your flooring. Buy a little extra to overlap seams by 2 inches.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularPiso() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const area = l * w;
+        const factor = parseFloat(document.getElementById('waste').value);
+        const total = area * factor;
+        const cajas = Math.ceil(total / 20);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Floor area: <strong>' + Math.round(area) + ' sq ft</strong>.<br>' +
+            'With waste: <strong>' + Math.round(total) + ' sq ft</strong>.<br>' +
+            'Boxes of flooring (~20 sq ft each): <strong>' + cajas + ' boxes</strong>.';
+    }
+    </script>
+</body>
+</html>

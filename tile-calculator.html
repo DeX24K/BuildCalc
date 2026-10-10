@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tile Calculator - How Many Boxes of Tile Do I Need?</title>
+    <meta name="description" content="Free tile calculator. Enter room sizes and tile type to get the exact number of boxes and square feet needed, including 10% breakage allowance.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/tile-calculator.html">
+    <meta property="og:title" content="Tile Calculator - How Many Boxes of Tile Do I Need?">
+    <meta property="og:description" content="Get the exact boxes of tile for any floor or wall.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many boxes of tile do I need for a 10x10 room?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 10x10 room needs about 110 sq ft of tile with 10% waste. With 10 tiles per box covering roughly 11 sq ft, you need about 10 boxes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much extra tile should I buy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buy 10% extra tile for standard layouts and up to 15-20% if installing diagonally, since diagonal cuts waste more tile."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Tile Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Tile Calculator</h1>
+            <p>Enter the size of the area and the tile you're using to get the exact square feet and number of boxes needed, with breakage allowance.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Area to cover</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="10">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="10">
+            <label for="tileSize">Tile size</label>
+            <select id="tileSize">
+                <option value="1" selected>12×12 inch (1 sq ft each)</option>
+                <option value="0.5">12×24 inch (2 sq ft each)</option>
+                <option value="0.44">18×18 inch (2.25 sq ft each)</option>
+                <option value="0.25">24×24 inch (4 sq ft each)</option>
+            </select>
+            <button class="calc-btn" onclick="calcularTile()">Calculate tile</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> area = length × width, plus 10% for cuts and breakage. Then we divide by the coverage of each tile and round up to whole tiles (boxes of 10).
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many boxes of tile do I need?</h2>
+            <p>Measure the room length and width in feet. Multiply them for the square footage, then add 10% (the standard breakage and cut allowance). Each box of 10 tiles covers about 11 sq ft for 12×12 tiles. Divide your total by 11 and round up.</p>
+            <p><strong>Quick rule of thumb:</strong> a 10×10 room needs about 110 sq ft of tile — around 10 boxes of 12×12 tiles.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How much extra tile should I buy?</h3>
+            <p>Buy 10% extra for straight layouts and 15–20% if installing diagonally, because diagonal cuts create much more waste.</p>
+            <h3>Should I buy extra tile for future repairs?</h3>
+            <p>Yes. Buying one extra box is cheap insurance — the same color and dye lot often isn't available years later.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularTile() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const area = l * w;
+        const areaConWaste = area * 1.10;
+        const sqftPorTile = parseFloat(document.getElementById('tileSize').value);
+        const tiles = Math.ceil(areaConWaste / sqftPorTile);
+        const cajas = Math.ceil(tiles / 10);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Area: <strong>' + Math.round(area) + ' sq ft</strong> (+10% waste = ' + Math.round(areaConWaste) + ' sq ft).<br>' +
+            'Tiles needed: <strong>' + tiles + '</strong>.<br>' +
+            'Boxes of 10: <strong>' + cajas + ' boxes</strong>.';
+    }
+    </script>
+</body>
+</html>

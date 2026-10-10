@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roofing Calculator - Squares, Shingles & Bundles</title>
+    <meta name="description" content="Free roofing calculator. Get squares, bundles of shingles and underlayment for any roof, adjusted for your roof slope.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/roofing-calculator.html">
+    <meta property="og:title" content="Roofing Calculator - Squares & Shingles">
+    <meta property="og:description" content="Estimate squares, bundles and underlayment for any roof.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many bundles of shingles do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most roofers use 3 bundles per square (100 sq ft). Multiply your roof area in squares by 3, then add 10% for waste and starter courses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I measure my roof area?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply the footprint length by width, then multiply by the roof pitch factor (1.06 for 4/12, 1.20 for 8/12) to account for the slope."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Roofing Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Roofing Calculator</h1>
+            <p>Measure your roof footprint, choose your slope, and get the exact number of squares, bundles of shingles and rolls of underlayment.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Roof footprint</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="40">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="25">
+            <label for="pitch">Roof pitch</label>
+            <select id="pitch">
+                <option value="1">Flat / low slope</option>
+                <option value="1.06" selected>4/12 (common)</option>
+                <option value="1.12">6/12</option>
+                <option value="1.20">8/12 (steep)</option>
+                <option value="1.28">10/12 (very steep)</option>
+            </select>
+            <button class="calc-btn" onclick="calcularTecho()">Calculate roofing</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> footprint area × pitch factor = roof area. 1 square = 100 sq ft. 3 bundles per square. Add 10% waste. Underlayment: 1 roll covers 4 squares.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many bundles of shingles do I need?</h2>
+            <p>Multiply your roof's footprint (length × width) by the pitch factor for the slope. Divide by 100 for squares, multiply by 3 bundles per square, and add ~10% for waste, starter and ridge cap. A 40×25 roof at 4/12 pitch needs about 33 squares or **99 bundles** plus waste.</p>
+            <p><strong>Tip:</strong> buy all shingles at once from the same production run so the color matches.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How many bundles of shingles do I need?</h3>
+            <p>3 bundles per square (100 sq ft), plus 10% extra for waste and starters.</p>
+            <h3>How do I measure my roof area?</h3>
+            <p>Measure the footprint and multiply by the pitch factor — 1.06 for 4/12, 1.12 for 6/12, 1.20 for 8/12, 1.28 for 10/12.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularTecho() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const pitch = parseFloat(document.getElementById('pitch').value);
+        const area = l * w * pitch;
+        const total = area * 1.10;
+        const cuadrados = total / 100;
+        const paquetes = Math.ceil(cuadrados * 3);
+        const rollos = Math.ceil(cuadrados / 4);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Roof area: <strong>' + Math.round(area) + ' sq ft</strong>.<br>' +
+            'With waste: <strong>' + Math.round(total) + ' sq ft</strong> = <strong>' + cuadrados.toFixed(1) + ' squares</strong>.<br>' +
+            'Shingles: <strong>' + paquetes + ' bundles</strong> (3 per square).<br>' +
+            'Underlayment: <strong>' + rollos + ' rolls</strong> (~4 squares per roll).';
+    }
+    </script>
+</body>
+</html>

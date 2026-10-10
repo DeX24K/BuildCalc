@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper Calculator - How Many Rolls Do I Need?</title>
+    <meta name="description" content="Free wallpaper calculator. Get the exact number of wallpaper rolls for any room, accounting for wall height and pattern repeat.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/wallpaper-calculator.html">
+    <meta property="og:title" content="Wallpaper Calculator - Rolls Needed">
+    <meta property="og:description" content="Estimate wallpaper rolls for any wall or room.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many rolls of wallpaper do I need for a 12x12 room?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 12x12 room with 8-foot walls has about 384 sq ft of wall. A standard double roll covers about 56 usable sq ft with small repeats, so you need about 8 rolls."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does pattern repeat change how much wallpaper I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. A large pattern repeat wastes more paper per strip. A double roll covers about 56 sq ft with a small repeat, but only 42-49 sq ft with a large repeat."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Wallpaper Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Wallpaper Calculator</h1>
+            <p>Enter the room perimeter, wall height and pattern repeat to find out exactly how many rolls of wallpaper you need.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Room measurements</h2>
+            <label for="perimeter">Room perimeter (ft)</label>
+            <input type="number" id="perimeter" min="1" value="48">
+            <label for="height">Wall height (ft)</label>
+            <input type="number" id="height" min="1" value="8">
+            <label for="repeat">Pattern repeat</label>
+            <select id="repeat">
+                <option value="56" selected>Small / no repeat (56 sq ft cover)</option>
+                <option value="49">Medium repeat (49 sq ft cover)</option>
+                <option value="42">Large repeat (42 sq ft cover)</option>
+            </select>
+            <button class="calc-btn" onclick="calcularPapel()">Calculate wallpaper</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> wall area = perimeter × height. Divide by the usable coverage per double roll. Subtract windows/doors if you measured them out. Round up.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many rolls of wallpaper do I need?</h2>
+            <p>Add all wall lengths together for the perimeter, multiply by wall height, and divide by the roll's usable coverage. Standard double rolls cover about 56 sq ft with a small pattern repeat. Large repeats waste more per strip — use the 42 sq ft figure to be safe.</p>
+            <p><strong>Quick rule of thumb:</strong> a 12×12 room (48 ft perimeter, 8 ft walls) needs about 8 double rolls.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How many rolls of wallpaper do I need for a 12×12 room?</h3>
+            <p>About 8 double rolls for 384 sq ft of wall with a small repeat.</p>
+            <h3>Should I buy extra wallpaper?</h3>
+            <p>Yes — buy 1-2 extra rolls so color lots match for future repairs.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularPapel() {
+        const p = parseFloat(document.getElementById('perimeter').value) || 0;
+        const h = parseFloat(document.getElementById('height').value) || 0;
+        const cobertura = parseFloat(document.getElementById('repeat').value);
+        const area = p * h;
+        const rollos = Math.ceil(area / cobertura);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Wall area: <strong>' + Math.round(area) + ' sq ft</strong>.<br>' +
+            'Double rolls needed: <strong>' + rollos + ' rolls</strong>.<br>' +
+            'Tip: buy 1 extra roll so color lots match.';
+    }
+    </script>
+</body>
+</html>

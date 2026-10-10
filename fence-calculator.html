@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fence Calculator - Panels, Posts and Concrete for Any Fence</title>
+    <meta name="description" content="Free fence calculator. Get the number of panels, posts and bags of concrete for any fence line.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/fence-calculator.html">
+    <meta property="og:title" content="Fence Calculator - Panels, Posts & Concrete">
+    <meta property="og:description" content="Estimate fence panels, posts and concrete-bags.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many fence panels do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divide your total fence length by the panel width (commonly 8 feet). For a 100-foot fence: about 13 panels and 14 posts (one every 8 feet plus a corner)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much concrete per fence post?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One 80 lb bag of concrete mix per post is enough for most residential fences. For deep or corner posts, use one and a half bags."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Fence Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Fence Calculator</h1>
+            <p>Find out how many panels, posts and bags of concrete you need for a fence line, based on standard 8-foot panels.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Fence line</h2>
+            <label for="length">Total fence length (ft)</label>
+            <input type="number" id="length" min="1" value="100">
+            <label for="panel">Panel width (ft)</label>
+            <select id="panel">
+                <option value="8" selected>8 ft (standard)</option>
+                <option value="6">6 ft</option>
+                <option value="4">4 ft</option>
+            </select>
+            <button class="calc-btn" onclick="calcularCerca()">Calculate fence</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> panels = length ÷ panel width (rounded up). Posts = panels + 1 (add corners/gates separately). 1 bag of 80 lb concrete per post.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many fence panels do I need?</h2>
+            <p>Divide the total fence length by the panel width. A 100-foot fence with 8-foot panels needs 13 panels and 14 posts. Corner posts, gate posts and end posts may need extra concrete — use 1.5 bags there.</p>
+            <p><strong>Concrete tip:</strong> an 80 lb bag per post holds better than quick-setting alternatives for corner posts.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How many fence panels do I need?</h3>
+            <p>Length ÷ panel width, rounded up. A 100-ft fence = 13 panels (8 ft).</p>
+            <h3>How much concrete per fence post?</h3>
+            <p>One 80 lb bag per post; one and a half for corners and gates.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularCerca() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const panel = parseFloat(document.getElementById('panel').value);
+        const paneles = Math.ceil(l / panel);
+        const postes = paneles + 1;
+        const concreto = postes;
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Fence length: <strong>' + l + ' ft</strong>.<br>' +
+            'Panels: <strong>' + paneles + '</strong>.<br>' +
+            'Posts: <strong>' + postes + '</strong> (add more for corners/gates).<br>' +
+            'Concrete: <strong>' + concreto + ' bags</strong> of 80 lb (1 per post).';
+    }
+    </script>
+</body>
+</html>

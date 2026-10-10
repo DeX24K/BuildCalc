@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint Calculator - How Much Paint Do I Need?</title>
+    <meta name="description" content="Free paint calculator. Enter room dimensions and get exact gallons of paint for walls, ceilings and trim — including the 10% waste allowance.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/paint-calculator.html">
+    <meta property="og:title" content="Paint Calculator - How Much Paint Do I Need?">
+    <meta property="og:description" content="Enter room dimensions and get exact gallons of paint for walls, ceilings and trim.">
+    <meta property="og:type" content="article">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much paint do I need for a 12x12 room?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A typical 12x12 bedroom with 8-foot ceilings needs about 2 gallons of paint for one coat on walls and ceiling (4 gallons for two coats)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many square feet does a gallon of paint cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One gallon of interior paint covers roughly 350-400 square feet with one coat. The calculator assumes 350 sq ft per gallon to be safe."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Paint Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Paint Calculator</h1>
+            <p>Enter your room dimensions and instantly get the exact number of gallons of paint you need for walls, ceiling and trim — with the standard 10% waste allowance included.</p>
+        </section>
+
+        <div class="calculator" id="calc">
+            <h2>Room dimensions</h2>
+            <label for="length">Room length (ft)</label>
+            <input type="number" id="length" min="1" value="12" placeholder="e.g. 12">
+
+            <label for="width">Room width (ft)</label>
+            <input type="number" id="width" min="1" value="12" placeholder="e.g. 12">
+
+            <label for="height">Ceiling height (ft)</label>
+            <input type="number" id="height" min="1" value="8" placeholder="e.g. 8">
+
+            <label for="doors">Number of doors</label>
+            <input type="number" id="doors" min="0" value="1" placeholder="e.g. 1">
+
+            <label for="windows">Number of windows</label>
+            <input type="number" id="windows" min="0" value="2" placeholder="e.g. 2">
+
+            <label for="coats">Number of coats</label>
+            <input type="number" id="coats" min="1" max="3" value="2" placeholder="e.g. 2">
+
+            <button class="calc-btn" onclick="calcularPintura()">Calculate paint</button>
+
+            <div class="result-box" id="resultado"></div>
+
+            <div class="formula">
+                <strong>How it works:</strong> wall area = perimeter × height − (door + window areas). One gallon covers ~350 sq ft. 10% extra for waste and touch-ups. Pages assume an 8ft ceiling, 21 sq ft per door, 15 sq ft per window.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How much paint do I need?</h2>
+            <p>Most paint cans cover 350–400 square feet per gallon. To find out how much paint you need:</p>
+            <ul>
+                <li>Measure the length and width of the room.</li>
+                <li>Calculate the wall area: 2 × (length + width) × ceiling height.</li>
+                <li>Subtract doors (~21 sq ft each) and windows (~15 sq ft each).</li>
+                <li>Add the ceiling if you're painting it.</li>
+                <li>Multiply by the number of coats, then add 10% for waste.</li>
+            </ul>
+            <p><strong>Quick rule of thumb:</strong> a standard 12×12 bedroom needs about 2 gallons of paint for one coat on walls and ceiling, or 4 gallons for two coats.</p>
+
+            <h2>How many coats do I need?</h2>
+            <p>Two coats give the best coverage and durability, especially when painting over a darker color. Our calculator defaults to 2 coats since that's what most interior jobs need.</p>
+
+            <h2>Should I paint the ceiling?</h2>
+            <p>If the ceiling is the same color as the walls or white, include it. A 12×12 ceiling is roughly 144 sq ft, which is about half a gallon of paint per coat.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How much paint do I need for a 12×12 room?</h3>
+            <p>A typical 12×12 bedroom with 8-foot ceilings needs about 2 gallons for one coat on walls and ceiling (4 gallons for two coats).</p>
+            <h3>How many square feet does a gallon of paint cover?</h3>
+            <p>One gallon covers roughly 350–400 sq ft with one coat. We use 350 sq ft to be safe.</p>
+            <h3>Does paint type change the amount?</h3>
+            <p>Yes. Primer and flat paint cover slightly better; high-gloss and textured paints may need more. Add 10% if unsure.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p>
+        </div>
+    </footer>
+
+    <script>
+    function calcularPintura() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const h = parseFloat(document.getElementById('height').value) || 0;
+        const doors = parseInt(document.getElementById('doors').value) || 0;
+        const windows = parseInt(document.getElementById('windows').value) || 0;
+        const coats = parseInt(document.getElementById('coats').value) || 1;
+
+        const perimetro = 2 * (l + w);
+        const areaParedes = perimetro * h;
+        const descontar = doors * 21 + windows * 15;
+        const areaPared = Math.max(0, areaParedes - descontar);
+        const areaTecho = l * w;
+
+        const areaTotal = (areaPared + areaTecho) * coats;
+        const areaConDesperdicio = areaTotal * 1.10;
+        const galones = areaConDesperdicio / 350;
+
+        const galonesRedondeado = Math.ceil(galones);
+        const cuartos = Math.ceil(galones * 4);
+
+        const resultado = document.getElementById('resultado');
+        resultado.style.display = 'block';
+        resultado.innerHTML =
+            'You need about <strong>' + galonesRedondeado + ' gallons</strong> of paint' +
+            (coats > 1 ? ' (' + coats + ' coats)' : '') + '.<br>' +
+            'That\'s about <strong>' + cuartos + ' quarts</strong> (buy gallons to save money).<br><br>' +
+            'Walls: ' + Math.round(areaPared) + ' sq ft · Ceiling: ' + Math.round(areaTecho) + ' sq ft.<br>' +
+            'Total paintable area: ' + Math.round(areaTotal) + ' sq ft (+10% waste included).';
+
+        /* Analytics: track a calculator use */
+        if (typeof gtag !== 'undefined') { gtag('event', 'caculadora_usada'); }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravel Calculator - Tons & Yards for Driveways and Landscaping</title>
+    <meta name="description" content="Free gravel calculator. Get cubic yards and tons of gravel for driveways, walkways and landscaping, based on depth.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/gravel-calculator.html">
+    <meta property="og:title" content="Gravel Calculator - Tons & Yards">
+    <meta property="og:description" content="Estimate yards and tons of gravel for any project.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much gravel do I need for a 20x20 driveway?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 20x20 driveway at 4 inches deep needs 4.9 cubic yards — about 6.9 tons of gravel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many tons is a cubic yard of gravel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most gravel weighs about 1.4 tons per cubic yard, depending on the type and size of the rock."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Gravel Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Gravel Calculator</h1>
+            <p>Find out how many cubic yards and tons of gravel you need for driveways, walkways, patios and flower beds.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Area to cover</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="20">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="20">
+            <label for="depth">Depth (inches)</label>
+            <input type="number" id="depth" min="1" value="4">
+            <button class="calc-btn" onclick="calcularGrava()">Calculate gravel</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> volume = length × width × (depth ÷ 12) → cubic feet. Divide by 27 for yards. Multiply yards by 1.4 for tons.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How much gravel do I need?</h2>
+            <p>Measure the length, width and desired depth in feet. Multiply for cubic feet, divide by 27 for cubic yards. Most gravel weighs about 1.4 tons per cubic yard, so multiply yards by 1.4 for tons. A 20×20 driveway at 4" deep needs roughly 4.9 yards — about 6.9 tons.</p>
+            <p><strong>Global tip:</strong> order in yards. Suppliers price per yard, and it's the unit you'll see on the delivery ticket.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How many tons is a cubic yard of gravel?</h3>
+            <p>About 1.4 tons for typical crushed stone and pea gravel. Larger rock weighs slightly less per yard.</p>
+            <h3>What depth do I need?</h3>
+            <p>2-3 inches for walkways, 4-5 inches for driveways over compacted ground, up to 12 inches for a gravel paver base.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularGrava() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const d = parseFloat(document.getElementById('depth').value) || 4;
+        const pies = l * w * (d / 12);
+        const yardas = pies / 27;
+        const toneladas = yardas * 1.4;
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Volume: <strong>' + pies.toFixed(1) + ' cu ft</strong> = <strong>' + yardas.toFixed(2) + ' cu yd</strong>.<br>' +
+            'Weight: about <strong>' + toneladas.toFixed(1) + ' tons</strong> (at 1.4 tons/yd).';
+    }
+    </script>
+</body>
+</html>

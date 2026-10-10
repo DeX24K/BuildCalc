@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Calculator - Bricks and Mortar for Walls & Pavers</title>
+    <meta name="description" content="Free brick calculator. Estimate the number of bricks and bags of mortar mix for any wall or patio, with waste allowance.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/brick-calculator.html">
+    <meta property="og:title" content="Brick Calculator - Bricks & Mortar">
+    <meta property="og:description" content="Estimate bricks and mortar bags for any project.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many bricks do I need per square foot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Using modular bricks (3 5/8 × 2 1/4 inch) with a 3/8 inch mortar joint, you need about 7 bricks per square foot of wall. Add 10% for breakage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much mortar do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One 60-80 lb bag of mortar mix covers about 30-35 bricks. Plan for one bag per 30 bricks to be safe."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Brick Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Brick Calculator</h1>
+            <p>Get the exact number of bricks and bags of mortar mix for a wall, column or patio. Standard modular brick sizing included.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Wall size</h2>
+            <label for="length">Wall length (ft)</label>
+            <input type="number" id="length" min="1" value="10">
+            <label for="height">Wall height (ft)</label>
+            <input type="number" id="height" min="1" value="6">
+            <button class="calc-btn" onclick="calcularLadrillos()">Calculate bricks</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> a modular brick with mortar joints covers ~135 sq in, so you need about 7 bricks per sq ft. Add 10% for breakage. Mortar: 1 bag per 30 bricks.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many bricks do I need?</h2>
+            <p>Multiply wall length by height for the square footage, then multiply by 7 (bricks per square foot for modular brick with mortar joint). Add 10% for breakage and odd cuts. A 10×6 wall needs about 60 sq ft × 7 = 420 bricks, plus 42 extra = ~462 bricks.</p>
+            <p><strong>Mortar tip:</strong> one bag of premixed mortar covers roughly 30 bricks.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How many bricks do I need per square foot?</h3>
+            <p>About 7 for modular brick with a 3/8" mortar joint.</p>
+            <h3>How much mortar do I need?</h3>
+            <p>One 60-80 lb bag covers about 30-35 bricks.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularLadrillos() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const h = parseFloat(document.getElementById('height').value) || 0;
+        const pies = l * h;
+        const ladrillos = Math.ceil(pies * 7 * 1.10);
+        const mezcla = Math.ceil(ladrillos / 30);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Wall area: <strong>' + Math.round(pies) + ' sq ft</strong>.<br>' +
+            'Bricks (with 10% waste): <strong>' + ladrillos + ' bricks</strong>.<br>' +
+            'Mortar mix: <strong>' + mezcla + ' bags</strong> (~1 per 30 bricks).';
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Calculator - Yards & Bags for Slabs, Footings and Columns</title>
+    <meta name="description" content="Free concrete calculator. Estimate cubic yards and number of 60/80 lb bags for any slab, footing or column project.">
+    <link rel="canonical" href="https://deX24K.github.io/BuildCalc/concrete-calculator.html">
+    <meta property="og:title" content="Concrete Calculator - Yards & Bags">
+    <meta property="og:description" content="Estimate cubic yards and bags of concrete for any project.">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5957334790088661" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5957334790088661">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many bags of concrete do I need for a 10x10 slab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 10x10 slab that is 4 inches thick needs 1.23 cubic yards of concrete. That's about 56 bags of 80 lb mix or 75 bags of 60 lb mix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a cubic yard of concrete weigh?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One cubic yard of concrete weighs about 4,050 lb. An 80 lb bag contains 0.6 cubic feet, so about 45 bags equal one cubic yard."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-logo" href="index.html">BuildCalc<span>™</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> › Concrete Calculator
+        </nav>
+
+        <section class="hero">
+            <h1>Concrete Calculator</h1>
+            <p>Get the exact cubic yards and number of 60 or 80 lb bags of concrete you need for slabs, footings, columns and stairs.</p>
+        </section>
+
+        <div class="calculator">
+            <h2>Project size</h2>
+            <label for="length">Length (ft)</label>
+            <input type="number" id="length" min="1" value="10">
+            <label for="width">Width (ft)</label>
+            <input type="number" id="width" min="1" value="10">
+            <label for="thickness">Thickness (inches)</label>
+            <input type="number" id="thickness" min="1" value="4">
+            <button class="calc-btn" onclick="calcularConcreto()">Calculate concrete</button>
+            <div class="result-box" id="resultado"></div>
+            <div class="formula">
+                <strong>How it works:</strong> cubic feet = length × width × (thickness ÷ 12). Divide by 27 for cubic yards. A 80 lb bag = 0.60 cu ft, a 60 lb bag = 0.45 cu ft.
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>How many bags of concrete do I need?</h2>
+            <p>Calculate the volume of your slab in cubic feet (length × width × thickness in feet), divide by 27 to get yards, then divide by the bag size. A standard 10×10 slab, 4" thick, needs about 1.23 cubic yards — roughly 56 bags of 80 lb mix.</p>
+            <p><strong>Tip:</strong> for anything larger than a 2-yard pour, order a ready-mix truck. It's cheaper and the finish is more consistent than bagging it yourself.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Frequently asked questions</h2>
+            <h3>How much does a cubic yard of concrete weigh?</h3>
+            <p>About 4,050 lb. One 80 lb bag = 0.6 cubic feet, so ~45 bags make one cubic yard.</p>
+            <h3>Should I add extra concrete?</h3>
+            <p>Yes — add 5–10% for spillage, uneven subgrade and rounding. It's cheaper to have a little extra than to run short mid-pour.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>© 2026 BuildCalc · <a href="index.html">All calculators</a></p></div>
+    </footer>
+
+    <script>
+    function calcularConcreto() {
+        const l = parseFloat(document.getElementById('length').value) || 0;
+        const w = parseFloat(document.getElementById('width').value) || 0;
+        const t = parseFloat(document.getElementById('thickness').value) || 4;
+        const pies = l * w * (t / 12);
+        const yardas = pies / 27;
+        const yardasConWaste = yardas * 1.05;
+        const bolsas80 = Math.ceil(yardasConWaste * 27 / 0.6);
+        const bolsas60 = Math.ceil(yardasConWaste * 27 / 0.45);
+        const r = document.getElementById('resultado');
+        r.style.display = 'block';
+        r.innerHTML = 'Volume: <strong>' + pies.toFixed(1) + ' cu ft</strong> = <strong>' + yardas.toFixed(2) + ' cu yd</strong> (+5% = ' + yardasConWaste.toFixed(2) + ' yd).<br>' +
+            'Bags of 80 lb: <strong>' + bolsas80 + '</strong>.<br>' +
+            'Bags of 60 lb: <strong>' + bolsas60 + '</strong>.';
+    }
+    function init() {
+        /* keep default values visible */
+    }
+    </script>
+</body>
+</html>
